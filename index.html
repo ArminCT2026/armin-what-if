@@ -66,11 +66,23 @@
     .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
     .card{background:var(--panel);border:1px solid rgba(72,131,216,.42);border-radius:16px;overflow:hidden;transition:.25s;box-shadow:0 8px 28px rgba(0,0,0,.2)}
     .card:hover{transform:translateY(-6px);border-color:#a75bff;box-shadow:var(--glow)}
-    .card-img{height:190px;background-size:cover;background-position:center;position:relative}
+    .card-img{height:190px;position:relative;overflow:hidden;background:#101a36}
+    .card-img img{width:100%;height:100%;display:block;object-fit:cover;transition:transform .5s}
+    .card:hover .card-img img{transform:scale(1.06)}
     .badge{position:absolute;top:12px;right:12px;background:rgba(5,8,22,.85);border:1px solid #9d5cff;color:#d9b0ff;border-radius:30px;padding:4px 11px;font-size:11px}
     .card-body{padding:17px}
     .card-body h3{font-size:17px;margin:0 0 9px}.card-body p{color:var(--muted);font-size:13px;line-height:1.9;margin:0 0 14px}
-    .read{color:#77c5ff;font-size:12px;font-weight:700}
+    .read{color:#77c5ff;font-size:12px;font-weight:700;background:none;border:0;padding:0;cursor:pointer}
+    .read:hover{color:#c78cff}
+    .modal{display:none;position:fixed;inset:0;z-index:50;background:rgba(0,0,0,.78);backdrop-filter:blur(8px);padding:22px;overflow:auto}
+    .modal.show{display:grid;place-items:center}
+    .modal-box{width:min(720px,100%);background:#091127;border:1px solid #548fe0;border-radius:18px;padding:26px;box-shadow:var(--glow);position:relative}
+    .modal-box h2{margin:5px 0 14px;color:#d6a4ff}
+    .modal-image{width:100%;height:250px;object-fit:cover;border-radius:12px;margin:10px 0 16px;border:1px solid #4569a8}
+    @media(max-width:620px){.modal-image{height:180px}}
+    .modal-box p{color:#d1daf0;line-height:2}
+    .modal-close{position:absolute;left:15px;top:12px;width:36px;height:36px;border-radius:50%;border:1px solid #5876ad;background:#101a36;color:#fff;font-size:20px;cursor:pointer}
+    .modal-note{font-size:12px;color:#9eafd2;border-top:1px solid #26395f;padding-top:12px;margin-top:18px}
     .categories{display:grid;grid-template-columns:repeat(5,1fr);gap:14px}
     .category{padding:24px 12px;text-align:center;border:1px solid #354d87;border-radius:15px;background:linear-gradient(145deg,rgba(16,25,58,.9),rgba(6,9,23,.9));transition:.2s}
     .category:hover{border-color:#b45cff;box-shadow:var(--glow);transform:translateY(-4px)}
@@ -136,17 +148,45 @@
   <section id="articles">
     <div class="section-head"><div><h2>آخرین کاوش‌ها</h2><p>سؤال‌هایی که ذهن را به سفر می‌برند</p></div><a href="#categories">همه موضوعات ←</a></div>
     <div class="grid" id="articleGrid">
-      <article class="card" data-search="اگر زمین دو برابر بزرگتر بود گرانش زمین">
-        <div class="card-img" style="background-image:url('https://images.unsplash.com/photo-1614730321146-b6fa6a46bcb4?auto=format&fit=crop&w=900&q=85')"><span class="badge">WHAT IF?</span></div>
-        <div class="card-body"><h3>اگر زمین دو برابر بزرگ‌تر بود، چه می‌شد؟</h3><p>از گرانش گرفته تا اقیانوس‌ها؛ اندازه سیاره ما چه تأثیری بر زندگی داشت؟</p><a class="read" href="#about">ادامه مطلب ←</a></div>
+      <article class="card" data-search="اگر زمین دو برابر بزرگ‌تر بود گرانش زمین سیاره">
+        <div class="card-img"><img src='https://images.unsplash.com/photo-1614730321146-b6fa6a46bcb4?auto=format&fit=crop&w=900&q=85' alt="تصویر مرتبط با مقاله" loading="lazy"><span class="badge">WHAT IF?</span></div>
+        <div class="card-body"><h3>اگر زمین دو برابر بزرگ‌تر بود، چه می‌شد؟</h3><p>از گرانش گرفته تا اقیانوس‌ها؛ اندازه سیاره ما چه تأثیری بر زندگی داشت؟</p><button class="read article-open" type="button" data-article="0">ادامه مطلب ←</button></div>
       </article>
       <article class="card" data-search="اگر دایناسورها منقرض نمی‌شدند تاریخ">
-        <div class="card-img" style="background-image:url('https://images.unsplash.com/photo-1525877442103-5ce8a6c8f3f1?auto=format&fit=crop&w=900&q=85')"><span class="badge">HISTORY</span></div>
-        <div class="card-body"><h3>اگر دایناسورها منقرض نمی‌شدند؟</h3><p>آیا پستانداران و انسان‌ها فرصت ظهور پیدا می‌کردند؟ یک فرضیه جذاب درباره تاریخ زمین.</p><a class="read" href="#about">ادامه مطلب ←</a></div>
+        <div class="card-img"><img src='https://images.unsplash.com/photo-1525877442103-5ce8a6c8f3f1?auto=format&fit=crop&w=900&q=85' alt="تصویر مرتبط با مقاله" loading="lazy"><span class="badge">HISTORY</span></div>
+        <div class="card-body"><h3>اگر دایناسورها منقرض نمی‌شدند؟</h3><p>آیا پستانداران و انسان‌ها فرصت ظهور پیدا می‌کردند؟</p><button class="read article-open" type="button" data-article="1">ادامه مطلب ←</button></div>
       </article>
       <article class="card" data-search="هوش مصنوعی خودآگاهی فناوری آینده">
-        <div class="card-img" style="background-image:url('https://images.unsplash.com/photo-1677442136019-21780ecad995?auto=format&fit=crop&w=900&q=85')"><span class="badge">TECHNOLOGY</span></div>
-        <div class="card-body"><h3>اگر هوش مصنوعی خودآگاه شود؟</h3><p>مرز میان ابزار هوشمند و ذهن مستقل کجاست؟ علم امروز چه پاسخی دارد؟</p><a class="read" href="#about">ادامه مطلب ←</a></div>
+        <div class="card-img"><img src='https://images.unsplash.com/photo-1677442136019-21780ecad995?auto=format&fit=crop&w=900&q=85' alt="تصویر مرتبط با مقاله" loading="lazy"><span class="badge">TECHNOLOGY</span></div>
+        <div class="card-body"><h3>اگر هوش مصنوعی خودآگاه شود؟</h3><p>مرز میان ابزار هوشمند و ذهن مستقل کجاست؟</p><button class="read article-open" type="button" data-article="2">ادامه مطلب ←</button></div>
+      </article>
+      <article class="card" data-search="مریخ زندگی انسان سفر فضایی">
+        <div class="card-img"><img src='https://images.unsplash.com/photo-1614728263952-84ea256f9679?auto=format&fit=crop&w=900&q=85' alt="تصویر مرتبط با مقاله" loading="lazy"><span class="badge">SPACE</span></div>
+        <div class="card-body"><h3>اگر انسان می‌توانست در مریخ زندگی کند؟</h3><p>زندگی روزمره روی سیاره سرخ چه تفاوت‌هایی با زمین داشت؟</p><button class="read article-open" type="button" data-article="3">ادامه مطلب ←</button></div>
+      </article>
+      <article class="card" data-search="اینترنت اختراع ارتباط فناوری">
+        <div class="card-img"><img src='https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=900&q=85' alt="تصویر مرتبط با مقاله" loading="lazy"><span class="badge">TECHNOLOGY</span></div>
+        <div class="card-body"><h3>اگر اینترنت هیچ‌وقت اختراع نمی‌شد؟</h3><p>ارتباطات، آموزش و کسب‌وکارها در دنیای بدون اینترنت چگونه بودند؟</p><button class="read article-open" type="button" data-article="4">ادامه مطلب ←</button></div>
+      </article>
+      <article class="card" data-search="سیاه چاله فضا علم کیهان">
+        <div class="card-img"><img src='https://images.unsplash.com/photo-1462331940025-496dfbfc7564?auto=format&fit=crop&w=900&q=85' alt="تصویر مرتبط با مقاله" loading="lazy"><span class="badge">SCIENCE</span></div>
+        <div class="card-body"><h3>راز سیاه‌چاله‌ها چیست؟</h3><p>دانشمندان چگونه اجرامی را بررسی می‌کنند که حتی نور هم از آن‌ها نمی‌گریزد؟</p><button class="read article-open" type="button" data-article="5">ادامه مطلب ←</button></div>
+      </article>
+      <article class="card" data-search="امپراتوری روم تاریخ باستان">
+        <div class="card-img"><img src='https://images.unsplash.com/photo-1518709268805-4e9042af9f23?auto=format&fit=crop&w=900&q=85' alt="تصویر مرتبط با مقاله" loading="lazy"><span class="badge">HISTORY</span></div>
+        <div class="card-body"><h3>اگر امپراتوری روم تا امروز باقی می‌ماند؟</h3><p>جهان امروز در این سناریوی تاریخی فرضی چه شکلی می‌توانست داشته باشد؟</p><button class="read article-open" type="button" data-article="6">ادامه مطلب ←</button></div>
+      </article>
+      <article class="card" data-search="سفر در زمان گذشته آینده فیزیک">
+        <div class="card-img"><img src='https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=900&q=85' alt="تصویر مرتبط با مقاله" loading="lazy"><span class="badge">FUTURE</span></div>
+        <div class="card-body"><h3>آیا روزی می‌توانیم به گذشته سفر کنیم؟</h3><p>فیزیک درباره سفر در زمان چه می‌گوید و چه چیزهایی هنوز ناشناخته‌اند؟</p><button class="read article-open" type="button" data-article="7">ادامه مطلب ←</button></div>
+      </article>
+      <article class="card" data-search="ماه ناپدید شود زمین جزر مد">
+        <div class="card-img"><img src='https://images.unsplash.com/photo-1446776811953-b23d57bd21aa?auto=format&fit=crop&w=900&q=85' alt="تصویر مرتبط با مقاله" loading="lazy"><span class="badge">WHAT IF?</span></div>
+        <div class="card-body"><h3>اگر ماه ناگهان ناپدید می‌شد؟</h3><p>جزر و مد و آسمان شب چه تغییراتی را تجربه می‌کردند؟</p><button class="read article-open" type="button" data-article="8">ادامه مطلب ←</button></div>
+      </article>
+      <article class="card" data-search="پارادوکس اولبرس آسمان شب ستاره">
+        <div class="card-img"><img src='https://images.unsplash.com/photo-1465101162946-4377e57745c3?auto=format&fit=crop&w=900&q=85' alt="تصویر مرتبط با مقاله" loading="lazy"><span class="badge">SCIENCE</span></div>
+        <div class="card-body"><h3>چرا آسمان شب کاملاً تاریک است؟</h3><p>یک پرسش ساده که به تاریخ کیهان و عمر جهان مربوط می‌شود.</p><button class="read article-open" type="button" data-article="9">ادامه مطلب ←</button></div>
       </article>
     </div>
     <div class="empty" id="emptyState">مطلبی با این عبارت پیدا نشد.</div>
@@ -175,6 +215,17 @@
     </div>
   </section>
 </main>
+
+<div class="modal" id="articleModal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+  <div class="modal-box">
+    <button class="modal-close" id="modalClose" aria-label="بستن">×</button>
+    <div class="eyebrow">ARMIN WHAT IF? / ARTICLE</div>
+    <h2 id="modalTitle"></h2>
+    <img class="modal-image" id="modalImage" src="" alt="تصویر مقاله">
+    <div id="modalText"></div>
+    <div class="modal-note">این مطلب برای آشنایی اولیه است. سناریوهای فرضی، پیش‌بینی قطعی یا واقعیت تاریخی محسوب نمی‌شوند.</div>
+  </div>
+</div>
 
 <footer id="contact">
   <div class="wrap footer-inner">
@@ -206,6 +257,120 @@
     document.body.style.color=light?'#10182e':'#f5f7ff';
     document.getElementById('themeBtn').textContent=light?'☀':'☾';
   });
+  const articleData=[
+    {
+        "title": "اگر زمین دو برابر بزرگ‌تر بود، چه می‌شد؟",
+        "paragraphs": [
+            "اگر زمین دو برابر بزرگ‌تر شود، نتیجه به جرم و چگالی آن بستگی دارد. با چگالی مشابه، گرانش سطحی می‌تواند بیشتر شود و این موضوع بر حرکت، پرواز و جو اثر می‌گذارد.",
+            "این فقط یک سناریوی فرضی است؛ اندازه به‌تنهایی برای پیش‌بینی همه ویژگی‌های یک سیاره کافی نیست."
+        ]
+    },
+    {
+        "title": "اگر دایناسورها منقرض نمی‌شدند؟",
+        "paragraphs": [
+            "انقراض بزرگ پایان دوره کرتاسه مسیر تکامل را تغییر داد و به گسترش بسیاری از پستانداران کمک کرد. اگر آن رویداد رخ نمی‌داد، ممکن بود گروه‌های مختلف دایناسورها همچنان در زیست‌بوم‌ها حضور داشته باشند.",
+            "نمی‌توان با قطعیت گفت انسان هرگز پدیدار نمی‌شد؛ تکامل به عوامل بسیار زیادی وابسته است."
+        ]
+    },
+    {
+        "title": "اگر هوش مصنوعی خودآگاه شود؟",
+        "paragraphs": [
+            "سامانه‌های هوش مصنوعی امروز می‌توانند زبان تولید کنند و الگوهای پیچیده را تشخیص دهند؛ اما این توانایی‌ها به‌تنهایی اثبات خودآگاهی نیستند.",
+            "اگر روزی شواهد علمی معتبری از تجربه ذهنی یک سامانه به دست آید، پرسش‌های اخلاقی و حقوقی مهمی مطرح می‌شود."
+        ]
+    },
+    {
+        "title": "اگر انسان می‌توانست در مریخ زندگی کند؟",
+        "paragraphs": [
+            "مریخ روزگاری محیطی متفاوت داشته و نشانه‌هایی از آب مایع در گذشته آن دیده شده است. با این حال، زندگی انسان در آنجا به زیستگاه‌های محافظت‌شده، منابع پایدار و فناوری‌های پیشرفته نیاز دارد.",
+            "این موضوع یک چشم‌انداز پژوهشی است؛ هنوز زندگی مستقل و گسترده انسان روی مریخ امکان عملی روزمره ندارد."
+        ]
+    },
+    {
+        "title": "اگر اینترنت هیچ‌وقت اختراع نمی‌شد؟",
+        "paragraphs": [
+            "بدون اینترنت، ارتباطات جهانی احتمالاً بیشتر به تلفن، تلویزیون، رادیو و شبکه‌های محدود رایانه‌ای وابسته می‌ماند. پژوهش و آموزش آنلاین نیز شکل امروزی خود را پیدا نمی‌کرد.",
+            "این یک تاریخ جایگزین فرضی است؛ فناوری‌های ارتباطی ممکن بود مسیرهای دیگری را طی کنند."
+        ]
+    },
+    {
+        "title": "راز سیاه‌چاله‌ها چیست؟",
+        "paragraphs": [
+            "سیاه‌چاله ناحیه‌ای از فضاست که گرانش آن بسیار شدید است و از درون افق رویدادش نور نمی‌تواند خارج شود. دانشمندان اثر آن را بر ستاره‌ها و گازهای اطراف بررسی می‌کنند.",
+            "تصویرهای تلسکوپی و امواج گرانشی ابزارهای مهمی برای مطالعه این اجرام‌اند؛ جزئیات درونی آن‌ها همچنان موضوع پژوهش است."
+        ]
+    },
+    {
+        "title": "اگر امپراتوری روم تا امروز باقی می‌ماند؟",
+        "paragraphs": [
+            "اگر امپراتوری روم غربی فرو نمی‌پاشید، ممکن بود مرزها، زبان‌ها و ساختارهای سیاسی اروپا مسیر دیگری پیدا کنند. اما حفظ یک امپراتوری برای قرن‌ها به تغییرات اقتصادی و اجتماعی زیادی وابسته بود.",
+            "این سناریو تاریخ فرضی است و نمی‌توان نتیجه آن را با قطعیت تعیین کرد."
+        ]
+    },
+    {
+        "title": "آیا روزی می‌توانیم به گذشته سفر کنیم؟",
+        "paragraphs": [
+            "در نسبیت، زمان برای ناظران با سرعت‌ها و میدان‌های گرانشی متفاوت می‌تواند با نرخ‌های متفاوت بگذرد. این اثرها اندازه‌گیری شده‌اند، اما سفر به گذشته مسئله‌ای بسیار پیچیده و اثبات‌نشده است.",
+            "ایده ماشین زمان در داستان‌ها رایج است؛ شواهد تجربی فعلی امکان سفر انسان به گذشته را نشان نمی‌دهد."
+        ]
+    },
+    {
+        "title": "اگر ماه ناگهان ناپدید می‌شد؟",
+        "paragraphs": [
+            "ماه در پایداری محور چرخش زمین و ایجاد جزر و مد نقش مهمی دارد. نبود ناگهانی آن می‌توانست الگوهای جزر و مدی را به‌شدت تغییر دهد و آسمان شب را متفاوت کند.",
+            "پیامدهای دقیق به شرایط فرضی این اتفاق بستگی دارد؛ این پرسش برای توضیح نقش ماه در سامانه زمین مفید است."
+        ]
+    },
+    {
+        "title": "چرا آسمان شب کاملاً تاریک است؟",
+        "paragraphs": [
+            "این پرسش به پارادوکس اولبرس مربوط است: اگر جهان بی‌نهایت، ایستا و پر از ستاره بود، چرا آسمان شب روشن نیست؟",
+            "انبساط جهان، عمر محدود آن و تغییر نور در طول مسیر از بخش‌های مهم پاسخ علمی امروزی هستند."
+        ]
+    }
+];
+  const articleImages = [
+    "https://images.unsplash.com/photo-1614730321146-b6fa6a46bcb4?auto=format&fit=crop&w=1200&q=85",
+    "https://images.unsplash.com/photo-1525877442103-5ce8a6c8f3f1?auto=format&fit=crop&w=1200&q=85",
+    "https://images.unsplash.com/photo-1677442136019-21780ecad995?auto=format&fit=crop&w=1200&q=85",
+    "https://images.unsplash.com/photo-1614728263952-84ea256f9679?auto=format&fit=crop&w=1200&q=85",
+    "https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=1200&q=85",
+    "https://images.unsplash.com/photo-1462331940025-496dfbfc7564?auto=format&fit=crop&w=1200&q=85",
+    "https://images.unsplash.com/photo-1518709268805-4e9042af9f23?auto=format&fit=crop&w=1200&q=85",
+    "https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=1200&q=85",
+    "https://images.unsplash.com/photo-1446776811953-b23d57bd21aa?auto=format&fit=crop&w=1200&q=85",
+    "https://images.unsplash.com/photo-1465101162946-4377e57745c3?auto=format&fit=crop&w=1200&q=85"
+  ];
+  const extraParagraphs = [
+    ["برای بررسی این فرضیه باید میان قطر، جرم و چگالی تفاوت بگذاریم. اگر قطر بیشتر شود اما چگالی ثابت بماند، جرم سیاره با سرعت زیادی افزایش می‌یابد؛ پس نمی‌توان فقط از روی اندازه ظاهری درباره شرایط سطح آن نتیجه گرفت.","این تغییرات بر شکل‌گیری کوه‌ها، حرکت آب‌ها و سازگاری موجودات زنده اثر می‌گذارند. با این حال، نتیجه دقیق به ترکیب و تاریخ شکل‌گیری سیاره فرضی وابسته است."],
+    ["پرندگان امروزی بازماندگان یک شاخه از دایناسورها هستند؛ بنابراین بخشی از دنیای دایناسورها هنوز در اطراف ما دیده می‌شود. آنچه در این فرضیه تغییر می‌کند، ادامه حضور گونه‌های غیرپرنده است.","این جهان جایگزین می‌توانست شبکه غذایی متفاوتی داشته باشد. اما نمی‌توان با قطعیت درباره پیدایش انسان یا شکل جانوران آینده حکم داد، چون تکامل به رویدادهای پیش‌بینی‌ناپذیر زیادی وابسته است."],
+    ["یکی از دشواری‌های این بحث آن است که هنوز تعریف مورد توافقی برای خودآگاهی نداریم. رفتار هوشمندانه، پاسخ‌دادن به پرسش‌ها یا توصیف احساسات، به‌تنهایی نشان نمی‌دهد سامانه‌ای واقعاً تجربه درونی دارد.","به همین دلیل پژوهشگران باید معیارهای دقیق و قابل‌آزمایش طراحی کنند. تا آن زمان بهتر است توانایی‌های فعلی هوش مصنوعی را از فرضیه‌های مربوط به خودآگاهی آینده جدا نگه داریم."],
+    ["زندگی در مریخ فقط ساختن خانه نیست. ساکنان احتمالی باید غذا تولید کنند، آب را بارها تصفیه و استفاده کنند و در برابر سرما و تابش محافظت شوند. هر خرابی در تجهیزات می‌تواند به مسئله‌ای جدی تبدیل شود.","از سوی دیگر، پژوهش درباره مریخ می‌تواند فناوری‌هایی بسازد که روی زمین هم کاربرد داشته باشند؛ مانند سامانه‌های کم‌مصرف بازیافت آب و کشاورزی در محیط‌های دشوار."],
+    ["بسیاری از خدمات امروزی احتمالاً به شکل دیگری رشد می‌کردند. شاید شبکه‌های محلی رایانه‌ای، رسانه‌های تعاملی یا فناوری‌های ارتباطی دیگری جای بخشی از کاربردهای اینترنت را می‌گرفتند.","با این حال، سرعت انتشار دانش و همکاری میان پژوهشگران احتمالاً متفاوت می‌شد. این سناریو یادآوری می‌کند که یک فناوری می‌تواند بر بخش‌های بسیار زیادی از زندگی روزمره اثر بگذارد."],
+    ["سیاه‌چاله‌ها همگی یکسان نیستند؛ برخی از فروپاشی ستاره‌های پرجرم شکل می‌گیرند و نمونه‌های ابرپرجرم در مرکز بسیاری از کهکشان‌ها قرار دارند. جرم آن‌ها می‌تواند از چند برابر جرم خورشید تا میلیون‌ها یا میلیاردها برابر آن باشد.","دانشمندان با بررسی حرکت ماده و ستاره‌های اطراف، و همچنین امواج گرانشی ناشی از ادغام اجرام فشرده، ویژگی‌های سیاه‌چاله‌ها را مطالعه می‌کنند."],
+    ["روم در طول تاریخ خود بارها تغییر کرد و حتی پیش از فروپاشی بخش غربی، بخش شرقی امپراتوری برای قرن‌ها ادامه یافت. بنابراین باقی‌ماندن روم تا امروز احتمالاً به معنی ثابت ماندن شکل حکومت و مرزهای آن نبود.","در یک تاریخ جایگزین، اصلاحات سیاسی، تغییر زبان‌ها و ارتباط با همسایگان می‌توانستند مسیر متفاوتی بسازند. این‌ها امکان‌های داستانی‌اند، نه واقعیت‌هایی که بتوان اثبات کرد."],
+    ["سفر به آینده به معنای نسبیتی، در اصل با اختلاف گذر زمان سازگار است: ساعت یک مسافر بسیار سریع می‌تواند نسبت به ساعت فردی روی زمین کمتر جلو برود. اما بازگشت به گذشته مسئله‌ای کاملاً متفاوت و حل‌نشده است.","ایده‌هایی مانند کرم‌چاله‌ها در فیزیک نظری بررسی شده‌اند، ولی هیچ روش عملی یا شاهدی برای ساخت ماشین زمان در دست نیست. داستان‌ها معمولاً از آزادی‌هایی استفاده می‌کنند که علم هنوز تأیید نکرده است."],
+    ["ماه همچنین بر طولانی‌مدتِ تغییرات محور چرخش زمین اثر می‌گذارد. اگر ماه وجود نداشت، تاریخ اقلیمی و پایداری محور زمین می‌توانست متفاوت باشد؛ اما این تغییرات در بازه‌های زمانی بسیار طولانی رخ می‌دهند.","در این سناریو خورشید همچنان جزر و مد ایجاد می‌کرد، پس اقیانوس‌ها کاملاً بی‌حرکت نمی‌شدند. ماه تنها عامل اثرگذار بر آب‌های زمین نیست، هرچند نقش مهمی دارد."],
+    ["یکی از نکته‌های مهم این است که نور سرعت محدودی دارد. وقتی به کهکشان‌های دور نگاه می‌کنیم، در واقع گذشته آن‌ها را می‌بینیم؛ گاهی نوری که اکنون به تلسکوپ می‌رسد میلیاردها سال در راه بوده است.","انبساط کیهان نیز نور را کش می‌دهد و آن را به طول موج‌های بلندتر می‌برد. کنار هم قرار گرفتن این عوامل توضیح می‌دهد که چرا شب با وجود میلیاردها ستاره، تاریک به نظر می‌رسد."]
+  ];
+  articleData.forEach((article, index) => {
+    article.image = articleImages[index];
+    article.paragraphs.push(...extraParagraphs[index]);
+  });
+
+  const modal=document.getElementById('articleModal');
+  const modalTitle=document.getElementById('modalTitle');
+  const modalText=document.getElementById('modalText');
+  document.querySelectorAll('.article-open').forEach(button=>button.addEventListener('click',()=>{
+    const article=articleData[Number(button.dataset.article)]; modalTitle.textContent=article.title; document.getElementById('modalImage').src=article.image; document.getElementById('modalImage').alt=article.title;
+    modalText.innerHTML=article.paragraphs.map(paragraph=>'<p></p>').join('');
+    [...modalText.querySelectorAll('p')].forEach((el,i)=>el.textContent=article.paragraphs[i]);
+    modal.classList.add('show'); document.body.style.overflow='hidden';
+  }));
+  function closeModal(){modal.classList.remove('show');document.body.style.overflow=''}
+  document.getElementById('modalClose').addEventListener('click',closeModal);
+  modal.addEventListener('click',event=>{if(event.target===modal)closeModal()});
+  document.addEventListener('keydown',event=>{if(event.key==='Escape')closeModal()});
   document.getElementById('year').textContent=new Date().getFullYear();
 </script>
 </body>
