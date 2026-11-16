@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#050713">
+  <meta name="description" content="ARMIN WHAT IF؛ دنیایی برای کشف سناریوهای فرضی، علم، تاریخ، فناوری و آینده.">
+  <title>ARMIN WHAT IF? | Imagine the Impossible</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --bg:#050713;--panel:rgba(9,15,35,.82);--line:rgba(75,155,255,.42);
+      --blue:#39a9ff;--purple:#b34cff;--text:#f5f7ff;--muted:#aab5d1;
+      --glow:0 0 18px rgba(44,145,255,.38),0 0 38px rgba(164,65,255,.15);
+    }
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{margin:0;background:var(--bg);color:var(--text);font-family:"Vazirmatn",Tahoma,sans-serif;overflow-x:hidden}
+    body:before{content:"";position:fixed;inset:0;z-index:-2;background:
+      radial-gradient(ellipse at 15% 15%,rgba(67,45,160,.25),transparent 35%),
+      radial-gradient(ellipse at 85% 45%,rgba(0,113,190,.18),transparent 38%),
+      linear-gradient(145deg,#03050d,#080d20 55%,#03040b)}
+    body:after{content:"";position:fixed;inset:0;z-index:-1;pointer-events:none;opacity:.3;background-image:
+      radial-gradient(1px 1px at 12% 18%,#fff 99%,transparent),
+      radial-gradient(1px 1px at 78% 24%,#fff 99%,transparent),
+      radial-gradient(2px 2px at 43% 72%,#9dcaff 99%,transparent),
+      radial-gradient(1px 1px at 90% 83%,#fff 99%,transparent);
+      background-size:230px 190px,310px 260px,370px 300px,280px 240px}
+    a{color:inherit;text-decoration:none}
+    button,input{font:inherit}
+    .wrap{width:min(1200px,92%);margin:auto}
+    header{position:sticky;top:0;z-index:20;background:rgba(4,7,19,.86);backdrop-filter:blur(16px);border-bottom:1px solid rgba(91,143,255,.25)}
+    .nav{height:78px;display:flex;align-items:center;justify-content:space-between;gap:22px}
+    .brand{display:flex;align-items:center;gap:10px;font-family:Arial,sans-serif;font-weight:900;direction:ltr;letter-spacing:.5px}
+    .brand-mark{width:45px;height:45px;display:grid;place-items:center;border:1px solid #a85cff;border-radius:14px;color:#d7a2ff;font-size:28px;text-shadow:0 0 15px #b34cff;box-shadow:var(--glow);transform:skew(-5deg)}
+    .brand-name{font-size:16px;line-height:1.05}.brand-name span{display:block;color:#c17aff}
+    .links{display:flex;gap:25px;align-items:center;color:#dce5ff;font-size:14px}
+    .links a{transition:.2s}.links a:hover,.links a.active{color:#b978ff;text-shadow:0 0 12px #a44cff}
+    .nav-actions{display:flex;align-items:center;gap:9px}
+    .search{display:flex;align-items:center;border:1px solid #344c83;border-radius:30px;padding:5px 12px;background:#080d20}
+    .search input{width:135px;background:transparent;border:0;outline:0;color:white;font-size:12px}
+    .icon-btn,.menu-btn{border:1px solid #435a94;background:#0b1229;color:white;border-radius:50%;width:38px;height:38px;cursor:pointer}
+    .menu-btn{display:none;border-radius:10px;font-size:20px}
+    .hero{min-height:570px;margin:22px auto 26px;border:1px solid #327dcb;border-radius:20px;overflow:hidden;position:relative;display:flex;align-items:center;box-shadow:var(--glow);background:
+      linear-gradient(90deg,rgba(3,5,17,.94) 0%,rgba(3,7,20,.72) 43%,rgba(3,7,20,.1) 100%),
+      linear-gradient(0deg,rgba(3,6,18,.8),transparent 50%),
+      url("https://images.unsplash.com/photo-1462331940025-496dfbfc7564?auto=format&fit=crop&w=1900&q=85") center/cover}
+    .hero-content{max-width:570px;padding:58px 6%;position:relative;z-index:1}
+    .eyebrow{color:#85c8ff;font-size:13px;letter-spacing:2px;text-transform:uppercase}
+    .hero h1{direction:ltr;text-align:left;font:900 clamp(48px,7vw,88px)/.95 Arial,sans-serif;margin:20px 0;text-shadow:0 0 24px rgba(45,150,255,.35)}
+    .hero h1 span{display:block;color:#b94cff}
+    .hero p{font-size:19px;line-height:1.9;color:#e3eaff;max-width:430px}
+    .hero p b{color:#c77cff}
+    .primary{display:inline-flex;align-items:center;gap:10px;margin-top:16px;padding:12px 25px;border:1px solid #64baff;border-radius:12px;background:linear-gradient(100deg,#145fe3,#6925ba);box-shadow:0 0 20px rgba(54,142,255,.5);font-weight:700;transition:.25s}
+    .primary:hover{transform:translateY(-3px);box-shadow:0 0 28px rgba(120,74,255,.7)}
+    .hero-tags{position:absolute;bottom:20px;left:3%;right:3%;display:grid;grid-template-columns:repeat(5,1fr);gap:10px}
+    .tag{background:rgba(4,9,24,.86);border:1px solid rgba(70,159,255,.65);border-radius:13px;padding:14px 10px;display:flex;align-items:center;gap:10px;min-height:74px;backdrop-filter:blur(8px)}
+    .tag .emoji{font-size:25px;filter:drop-shadow(0 0 8px #8b55ff)}
+    .tag strong{display:block;font-size:13px}.tag small{color:var(--muted);font-size:10px}
+    section{padding:38px 0}
+    .section-head{display:flex;justify-content:space-between;align-items:end;margin-bottom:22px;gap:15px}
+    .section-head h2{font-size:25px;margin:0}.section-head p{color:var(--muted);margin:5px 0 0;font-size:13px}
+    .section-head a{color:#bd82ff;font-size:13px}
+    .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+    .card{background:var(--panel);border:1px solid rgba(72,131,216,.42);border-radius:16px;overflow:hidden;transition:.25s;box-shadow:0 8px 28px rgba(0,0,0,.2)}
+    .card:hover{transform:translateY(-6px);border-color:#a75bff;box-shadow:var(--glow)}
+    .card-img{height:190px;background-size:cover;background-position:center;position:relative}
+    .badge{position:absolute;top:12px;right:12px;background:rgba(5,8,22,.85);border:1px solid #9d5cff;color:#d9b0ff;border-radius:30px;padding:4px 11px;font-size:11px}
+    .card-body{padding:17px}
+    .card-body h3{font-size:17px;margin:0 0 9px}.card-body p{color:var(--muted);font-size:13px;line-height:1.9;margin:0 0 14px}
+    .read{color:#77c5ff;font-size:12px;font-weight:700}
+    .categories{display:grid;grid-template-columns:repeat(5,1fr);gap:14px}
+    .category{padding:24px 12px;text-align:center;border:1px solid #354d87;border-radius:15px;background:linear-gradient(145deg,rgba(16,25,58,.9),rgba(6,9,23,.9));transition:.2s}
+    .category:hover{border-color:#b45cff;box-shadow:var(--glow);transform:translateY(-4px)}
+    .category .big{font-size:32px;display:block;margin-bottom:8px}.category strong{font-size:14px}.category small{display:block;color:var(--muted);font-size:11px;margin-top:5px}
+    .about{display:grid;grid-template-columns:1fr 1fr;gap:28px;align-items:center;border:1px solid #314c85;border-radius:18px;padding:28px;background:linear-gradient(110deg,rgba(11,18,43,.95),rgba(20,9,43,.8))}
+    .about-art{min-height:230px;border-radius:14px;background:url("https://images.unsplash.com/photo-1446776811953-b23d57bd21aa?auto=format&fit=crop&w=900&q=85") center/cover}
+    .about h2{margin-top:0}.about p{color:var(--muted);line-height:2;font-size:14px}
+    footer{margin-top:40px;border-top:1px solid #25375f;padding:28px 0;color:var(--muted);font-size:12px}
+    .footer-inner{display:flex;justify-content:space-between;gap:15px;flex-wrap:wrap}
+    .empty{display:none;text-align:center;color:var(--muted);padding:25px}
+    @media(max-width:850px){
+      .links{gap:13px}.search input{width:90px}.hero{min-height:620px;background-position:58% center}
+      .hero-content{padding:40px 5%;margin-top:-70px}.hero-tags{grid-template-columns:repeat(3,1fr)}
+      .hero-tags .tag:nth-child(4),.hero-tags .tag:nth-child(5){display:none}
+      .categories{grid-template-columns:repeat(3,1fr)}
+    }
+    @media(max-width:620px){
+      .nav{height:68px}.menu-btn{display:block}.links{display:none;position:absolute;top:68px;right:4%;left:4%;padding:16px;background:#080d20;border:1px solid #354d87;border-radius:14px;flex-direction:column;align-items:stretch}
+      .links.open{display:flex}.nav-actions .search{display:none}.brand-mark{width:39px;height:39px}
+      .hero{margin-top:13px;min-height:660px;background-position:58% center}
+      .hero-content{padding:30px 7%;margin-top:-100px}.hero h1{font-size:57px}.hero p{font-size:15px}
+      .hero-tags{grid-template-columns:repeat(2,1fr);bottom:13px}.tag{min-height:62px;padding:9px}.tag .emoji{font-size:21px}
+      .grid{grid-template-columns:1fr}.card-img{height:210px}.categories{grid-template-columns:repeat(2,1fr)}
+      .about{grid-template-columns:1fr;padding:18px}.about-art{min-height:180px}
+      .section-head h2{font-size:21px}
+    }
+  </style>
+</head>
+<body>
+<header>
+  <div class="wrap nav">
+    <a class="brand" href="#home" aria-label="ARMIN WHAT IF home">
+      <span class="brand-mark">A</span><span class="brand-name">ARMIN <span>WHAT IF?</span></span>
+    </a>
+    <nav class="links" id="navLinks">
+      <a class="active" href="#home">خانه</a><a href="#articles">مقاله‌ها</a><a href="#categories">دسته‌بندی‌ها</a><a href="#about">درباره ما</a><a href="#contact">ارتباط</a>
+    </nav>
+    <div class="nav-actions">
+      <label class="search"><input id="searchInput" type="search" placeholder="جست‌وجو..."><span>⌕</span></label>
+      <button class="icon-btn" id="themeBtn" aria-label="تغییر حالت">☾</button>
+      <button class="menu-btn" id="menuBtn" aria-label="باز کردن منو">☰</button>
+    </div>
+  </div>
+</header>
+
+<main class="wrap" id="home">
+  <section class="hero">
+    <div class="hero-content">
+      <div class="eyebrow">A UNIVERSE OF POSSIBILITIES</div>
+      <h1>ARMIN <span>WHAT IF?</span></h1>
+      <p>تصور کن غیرممکن‌ها ممکن شوند.<br><b>Imagine the Impossible.</b><br>به ناشناخته‌ها قدم بگذار و دنیا را از زاویه‌ای تازه ببین.</p>
+      <a class="primary" href="#articles">شروع کاوش <span>←</span></a>
+    </div>
+    <div class="hero-tags">
+      <div class="tag"><span class="emoji">⌛</span><div><strong>What If?</strong><small>سناریوهای فرضی</small></div></div>
+      <div class="tag"><span class="emoji">🏛️</span><div><strong>History</strong><small>رازهای گذشته</small></div></div>
+      <div class="tag"><span class="emoji">🔭</span><div><strong>Science</strong><small>کشف شگفتی‌ها</small></div></div>
+      <div class="tag"><span class="emoji">⚙️</span><div><strong>Technology</strong><small>فناوری نو</small></div></div>
+      <div class="tag"><span class="emoji">🪐</span><div><strong>Future</strong><small>فردای ناشناخته</small></div></div>
+    </div>
+  </section>
+
+  <section id="articles">
+    <div class="section-head"><div><h2>آخرین کاوش‌ها</h2><p>سؤال‌هایی که ذهن را به سفر می‌برند</p></div><a href="#categories">همه موضوعات ←</a></div>
+    <div class="grid" id="articleGrid">
+      <article class="card" data-search="اگر زمین دو برابر بزرگتر بود گرانش زمین">
+        <div class="card-img" style="background-image:url('https://images.unsplash.com/photo-1614730321146-b6fa6a46bcb4?auto=format&fit=crop&w=900&q=85')"><span class="badge">WHAT IF?</span></div>
+        <div class="card-body"><h3>اگر زمین دو برابر بزرگ‌تر بود، چه می‌شد؟</h3><p>از گرانش گرفته تا اقیانوس‌ها؛ اندازه سیاره ما چه تأثیری بر زندگی داشت؟</p><a class="read" href="#about">ادامه مطلب ←</a></div>
+      </article>
+      <article class="card" data-search="اگر دایناسورها منقرض نمی‌شدند تاریخ">
+        <div class="card-img" style="background-image:url('https://images.unsplash.com/photo-1525877442103-5ce8a6c8f3f1?auto=format&fit=crop&w=900&q=85')"><span class="badge">HISTORY</span></div>
+        <div class="card-body"><h3>اگر دایناسورها منقرض نمی‌شدند؟</h3><p>آیا پستانداران و انسان‌ها فرصت ظهور پیدا می‌کردند؟ یک فرضیه جذاب درباره تاریخ زمین.</p><a class="read" href="#about">ادامه مطلب ←</a></div>
+      </article>
+      <article class="card" data-search="هوش مصنوعی خودآگاهی فناوری آینده">
+        <div class="card-img" style="background-image:url('https://images.unsplash.com/photo-1677442136019-21780ecad995?auto=format&fit=crop&w=900&q=85')"><span class="badge">TECHNOLOGY</span></div>
+        <div class="card-body"><h3>اگر هوش مصنوعی خودآگاه شود؟</h3><p>مرز میان ابزار هوشمند و ذهن مستقل کجاست؟ علم امروز چه پاسخی دارد؟</p><a class="read" href="#about">ادامه مطلب ←</a></div>
+      </article>
+    </div>
+    <div class="empty" id="emptyState">مطلبی با این عبارت پیدا نشد.</div>
+  </section>
+
+  <section id="categories">
+    <div class="section-head"><div><h2>جهان‌های قابل کشف</h2><p>موضوع مورد علاقه‌ات را انتخاب کن</p></div></div>
+    <div class="categories">
+      <a class="category" href="#articles"><span class="big">🌌</span><strong>علم و فضا</strong><small>جهان و کیهان</small></a>
+      <a class="category" href="#articles"><span class="big">🏛️</span><strong>تاریخ</strong><small>رازهای گذشته</small></a>
+      <a class="category" href="#articles"><span class="big">🤖</span><strong>فناوری</strong><small>هوش مصنوعی و نوآوری</small></a>
+      <a class="category" href="#articles"><span class="big">🚀</span><strong>آینده</strong><small>فردای بشر</small></a>
+      <a class="category" href="#articles"><span class="big">❔</span><strong>سناریوهای فرضی</strong><small>اگر چنین می‌شد...</small></a>
+    </div>
+  </section>
+
+  <section id="about">
+    <div class="about">
+      <div>
+        <div class="eyebrow">WELCOME TO THE UNKNOWN</div>
+        <h2>درباره ARMIN WHAT IF</h2>
+        <p>اینجا جایی برای پرسیدن سؤال‌های متفاوت است؛ از رازهای تاریخ و شگفتی‌های علم تا آینده فناوری و سناریوهایی که ذهن را به چالش می‌کشند. مطالب واقعی با تکیه بر منابع معتبر نوشته می‌شوند و سناریوهای خیالی به‌روشنی با عنوان فرضیه مشخص خواهند شد.</p>
+        <a class="primary" href="#articles">ماجراجویی را شروع کن ←</a>
+      </div>
+      <div class="about-art" role="img" aria-label="نمایی از زمین از فضا"></div>
+    </div>
+  </section>
+</main>
+
+<footer id="contact">
+  <div class="wrap footer-inner">
+    <div><strong style="color:#d5a0ff;direction:ltr;display:inline-block">ARMIN WHAT IF?</strong> — Imagine the Impossible. Explore the Unknown.</div>
+    <div>© <span id="year"></span> ARMIN WHAT IF | ساخته‌شده برای کنجکاوان</div>
+  </div>
+</footer>
+<script>
+  const menuBtn=document.getElementById('menuBtn');
+  const navLinks=document.getElementById('navLinks');
+  menuBtn.addEventListener('click',()=>navLinks.classList.toggle('open'));
+  navLinks.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>navLinks.classList.remove('open')));
+  const searchInput=document.getElementById('searchInput');
+  const cards=[...document.querySelectorAll('#articleGrid .card')];
+  const emptyState=document.getElementById('emptyState');
+  searchInput.addEventListener('input',()=>{
+    const q=searchInput.value.trim().toLowerCase();
+    let shown=0;
+    cards.forEach(card=>{
+      const match=(card.innerText+' '+card.dataset.search).toLowerCase().includes(q);
+      card.style.display=match?'':'none'; if(match) shown++;
+    });
+    emptyState.style.display=shown?'none':'block';
+  });
+  document.getElementById('themeBtn').addEventListener('click',()=>{
+    document.body.classList.toggle('light');
+    const light=document.body.classList.contains('light');
+    document.body.style.background=light?'#e9efff':'#050713';
+    document.body.style.color=light?'#10182e':'#f5f7ff';
+    document.getElementById('themeBtn').textContent=light?'☀':'☾';
+  });
+  document.getElementById('year').textContent=new Date().getFullYear();
+</script>
+</body>
+</html>
